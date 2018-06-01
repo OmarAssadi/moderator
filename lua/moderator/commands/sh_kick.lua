@@ -1,4 +1,4 @@
-﻿--[[
+--[[
     Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
     (compatibility clause) to any licence for distributing derivative works that have been
     produced by the normal use of the Work as a library
@@ -14,7 +14,11 @@ function COMMAND:OnRun(client, arguments, target)
     local reason = "no reason"
 
     if (#arguments > 0) then
-        reason = table.concat(arguments, " ")
+        if (isstring(arguments[1])) then
+            reason = table.concat(arguments, " ")
+        else
+            reason = arguments[2]
+        end
     end
 
     local oldReason = reason
