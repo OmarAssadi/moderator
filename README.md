@@ -1,5 +1,7 @@
 # Moderator
 
+[![Issues](https://img.shields.io/github/issues/NutScript/moderator.svg)](https://github.com/NutScript/moderator/issues)[![CLA assistant](https://cla-assistant.io/readme/badge/NutScript/moderator)](https://cla-assistant.io/NutScript/moderator)
+
 A simple yet powerful Garry's Mod administration tool.
 
 ## Installation
