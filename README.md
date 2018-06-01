@@ -1,6 +1,6 @@
 # Moderator
 
-[![Issues](https://img.shields.io/github/issues/NutScript/moderator.svg)](https://github.com/NutScript/moderator/issues)[![CLA assistant](https://cla-assistant.io/readme/badge/NutScript/moderator)](https://cla-assistant.io/NutScript/moderator)
+[![License: EUPL](https://img.shields.io/badge/License-EUPL%20V1.2-blue.svg)](https://choosealicense.com/licenses/eupl-1.2/) [![Issues](https://img.shields.io/github/issues/NutScript/moderator.svg)](https://github.com/NutScript/moderator/issues) [![stars](https://img.shields.io/github/stars/NutScript/moderator.svg)](https://github.com/NutScript/moderator/stargazers) [![Forks](https://img.shields.io/github/forks/NutScript/moderator.svg)](https://github.com/NutScript/moderator/network) [![CLA assistant](https://cla-assistant.io/readme/badge/NutScript/moderator)](https://cla-assistant.io/NutScript/moderator)
 
 A simple yet powerful Garry's Mod administration tool.
 
@@ -9,6 +9,12 @@ A simple yet powerful Garry's Mod administration tool.
 Download and extract the contents of the latest stable version from
 the [releases tab on GitHub](https://github.com/nutscript/moderator/releases)
 to your Garry's Mod add-ons folder.
+
+## Contributing
+
+Help would be great!
+
+If you'd like to contribute, please read the [contributing.md](/CONTRIBUTING.md) file first.
 
 ## Acknowledgements
 
