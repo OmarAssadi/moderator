@@ -5,7 +5,7 @@ A simple yet powerful Garry's Mod administration tool.
 ## Installation
 
 Download and extract the contents of the latest stable version from
-the [releases tab on GitHub](https://github.com/54/moderator/releases)
+the [releases tab on GitHub](https://github.com/nutscript/moderator/releases)
 to your Garry's Mod add-ons folder.
 
 ## Acknowledgements
