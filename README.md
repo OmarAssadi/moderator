@@ -1,10 +1,27 @@
-moderator
-=========
+# Moderator
 
-An administrative add-on for Garry's Mod
+A simple yet powerful Garry's Mod administration tool.
 
-Installation
-=========
-Make a new folder called 'moderator' in your server's add-ons folder. Then, place the contents of this repository into the said folder.
+## Installation
 
-`Warning: This add-on is currently in development and may _not_ be stable!`
+Download and extract the contents of the latest stable version from
+the [releases tab on GitHub](https://github.com/54/moderator/releases)
+to your Garry's Mod add-ons folder.
+
+## Acknowledgements
+
+Special thanks to [Brian Hang](https://github.com/brianhang) for the initial development
+of this add-on.
+
+## License
+
+Moderator is licensed under the EUPL v1.2.
+You can find a rough TL;DR over at [Choose a License](https://choosealicense.com/licenses/eupl-1.2/).
+
+Note that nothing in or linked from this README should be considered legal advice.
+Instead, please read [the license itself](/LICENSE.txt).
+
+Essentially, the license is very similar to the AGPL—meaning should you ever distribute this add-on,
+all changes must be open-sourced (network/server usage is considered distribution). However, unlike
+the AGPL, the EUPL is not an infectious license. And, as such, you are free to make you private, closed-source
+extensions and plugins.
