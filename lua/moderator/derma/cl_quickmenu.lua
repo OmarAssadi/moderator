@@ -1,65 +1,64 @@
---[[
+﻿--[[
     Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
     (compatibility clause) to any licence for distributing derivative works that have been
     produced by the normal use of the Work as a library
 --]]
-
 function moderator.ShowQuickMenu()
-	gui.EnableScreenClicker(true)
+    gui.EnableScreenClicker(true)
+    local menu = DermaMenu()
 
-	local menu = DermaMenu()
-		for k, v in SortedPairsByMemberValue(moderator.commands, "name") do
-			if (k != "__SortedIndex" and !v.noTarget and !v.hidden) then
-				local command, option = menu:AddSubMenu(v.name)
+    for k, v in SortedPairsByMemberValue(moderator.commands, "name") do
+        if (k ~= "__SortedIndex" and not v.noTarget and not v.hidden) then
+            local command, option = menu:AddSubMenu(v.name)
 
-				for k2, v2 in ipairs(player.GetAll()) do
-					if (v.OnClick) then
-						local menu = command:AddSubMenu(v2:Name())
+            for k2, v2 in ipairs(player.GetAll()) do
+                if (v.OnClick) then
+                    local menu = command:AddSubMenu(v2:Name())
 
-						function v:Send(client, ...)
-							local target = {client}
+                    function v:Send(client, ...)
+                        local target = {client}
 
-							for k3, v3 in pairs(moderator.selected) do
-								if (k3 != v2) then
-									target[#target + 1] = k3
-								end
-							end
+                        for k3, v3 in pairs(moderator.selected) do
+                            if (k3 ~= v2) then
+                                target[#target + 1] = k3
+                            end
+                        end
 
-							moderator.SendCommand(k, target, ...)
-						end
+                        moderator.SendCommand(k, target, ...)
+                    end
 
-						v:OnClick(menu, v2)
-					else
-						command:AddOption(v2:Name(), function()
-							moderator.SendCommand(k, v2)
-						end)
-					end
-				end
+                    v:OnClick(menu, v2)
+                else
+                    command:AddOption(v2:Name(), function()
+                        moderator.SendCommand(k, v2)
+                    end)
+                end
+            end
 
-				local icon = Material("icon16/"..(v.icon or "brick")..".png")
+            local icon = Material("icon16/" .. (v.icon or "brick") .. ".png")
 
-				option.PaintOver = function(this, w, h)
-					surface.SetDrawColor(color_white)
-					surface.SetMaterial(icon)
-					surface.DrawTexturedRect(3, 3, 16, 16)
-				end
-			end
-		end
+            option.PaintOver = function(this, w, h)
+                surface.SetDrawColor(color_white)
+                surface.SetMaterial(icon)
+                surface.DrawTexturedRect(3, 3, 16, 16)
+            end
+        end
+    end
 
-		menu.OnRemove = function(this)
-			gui.EnableScreenClicker(false)
-		end
-	menu:Open()
+    menu.OnRemove = function(this)
+        gui.EnableScreenClicker(false)
+    end
 
-	moderator.quickMenu = menu
+    menu:Open()
+    moderator.quickMenu = menu
 end
 
 concommand.Add("+mod_quickmenu", function(client, command, arguments)
-	moderator.ShowQuickMenu()
+    moderator.ShowQuickMenu()
 end)
 
 concommand.Add("-mod_quickmenu", function(client, command, arguments)
-	if (IsValid(moderator.quickMenu)) then
-		moderator.quickMenu:Remove()
-	end
+    if (IsValid(moderator.quickMenu)) then
+        moderator.quickMenu:Remove()
+    end
 end)
