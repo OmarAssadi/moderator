@@ -15,10 +15,12 @@ COMMAND.example = "!ban Troll 1w \"being a troll, banned for a week\" - Bans a t
 
 function COMMAND:OnRun(client, arguments, target)
     if (not target and not arguments[1]:match("STEAM_[0-5]:[0-9]:[0-9]+") and arguments[1]:lower() ~= "bot") then return false, "you need to provide a valid player or steamID." end
+
     local time = moderator.GetTimeByString(arguments[2] or 60)
     local reason = arguments[3] and table.concat(arguments, " ", 3) or "no reason"
     time = moderator.GetTimeByString(time)
     local timeString = time > 0 and "for " .. string.NiceTime(time) or "permanently"
+
     moderator.NotifyAction(client, target or arguments[1]:upper(), "has banned * " .. timeString .. " with the reason: " .. reason)
     moderator.BanPlayer(target or arguments[1]:upper(), reason, time, client)
 end
