@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 local COMMAND = {}
 	COMMAND.name = "Go To"
 	COMMAND.tip = "Teleports you to a player's position."
@@ -11,7 +17,7 @@ local COMMAND = {}
 		local function Action(target)
 			client.modPos = client.modPos or client:GetPos()
 			client:SetVelocity(Vector())
-			
+
 			if (toAim) then
 				client:SetPos(target:GetEyeTraceNoCursor().HitPos + Vector(0, 0, 4))
 			else

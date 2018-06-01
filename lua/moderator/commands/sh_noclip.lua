@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 local COMMAND = {}
 	COMMAND.name = "Toggle Noclip"
 	COMMAND.tip = "Toggles whether or not a player has noclip."
@@ -16,7 +22,7 @@ local COMMAND = {}
 		if (arguments[1] != nil) then
 			force = util.tobool(arguments[1])
 		end
-		
+
 		local function Action(target)
 			if (force) then
 				target:SetMoveType(force and MOVETYPE_NOCLIP or MOVETYPE_WALK)

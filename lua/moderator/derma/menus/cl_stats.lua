@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 local CATEGORY = {}
 	CATEGORY.name = "Statistics"
 	CATEGORY.adminOnly = true
@@ -22,10 +28,10 @@ local CATEGORY = {}
 		graph:SetupLine(3, Color(230, 180, 25), "Median Ping")
 		graph:SetTitle("Ping")
 		graph:SetupLegend()
-			
+
 		timer.Create("mod_PingCheck", 0.75, 0, function()
 			if (!IsValid(graph)) then return timer.Remove("mod_PingCheck") end
-				
+
 			local average = 0
 			local pingList = {}
 
@@ -33,9 +39,9 @@ local CATEGORY = {}
 				average = average + v:Ping()
 				pingList[#pingList + 1] = v:Ping()
 			end
-			
+
 			average = average / #player.GetAll()
-			
+
 			graph:AddPoint(math.floor(average))
 			graph:AddPoint(LocalPlayer():Ping(), 2)
 			graph:AddPoint(median(pingList), 3)
@@ -50,10 +56,10 @@ local CATEGORY = {}
 		graph:SetupLine(1, Color(80, 200, 25), "Volume")
 		graph:SetTitle("Server Volume (Excluding You)")
 		graph:SetupLegend()
-			
+
 		timer.Create("mod_VolumeCheck", 0.75, 0, function()
 			if (!IsValid(graph)) then return timer.Remove("mod_VolumeCheck") end
-				
+
 			local total = 0
 
 			for k, v in pairs(player.GetAll()) do
@@ -63,7 +69,7 @@ local CATEGORY = {}
 					total = total + volume
 				end
 			end
-			
+
 			graph:AddPoint(math.Round(total * 100))
 		end)
 
@@ -92,5 +98,5 @@ local CATEGORY = {}
 		panel:AddHeader("Staff Online: "..GetOnlineStaff(), nil, function()
 			return "Staff Online: "..GetOnlineStaff()
 		end)
-	end	
+	end
 moderator.menus.stats = CATEGORY

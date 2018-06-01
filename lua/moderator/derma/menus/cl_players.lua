@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 local CATEGORY = {}
 	CATEGORY.name = "Players"
 	CATEGORY.autoSelect = true
@@ -179,11 +185,11 @@ local CATEGORY = {}
 			self:SetTall(36)
 			self:DockPadding(2, 2, 2, 2)
 			self:DockMargin(4, 4, 4, 0)
-			
+
 			self.avatar = self:Add("AvatarImage")
 			self.avatar:Dock(LEFT)
 			self.avatar:SetWide(32)
-			
+
 			self.icon = self:Add("DImage")
 			self.icon:Dock(LEFT)
 			self.icon:SetWide(16)
@@ -197,7 +203,7 @@ local CATEGORY = {}
 			self.name:SetDark(true)
 			self.name:SetText("Unknown Player")
 			self.name:SizeToContents()
-			
+
 			self.checked = self:Add("DButton")
 			self.checked:Dock(RIGHT)
 			self.checked:SetText("")
@@ -213,17 +219,17 @@ local CATEGORY = {}
 			self.checked.Paint = function(this, w, h)
 				surface.SetDrawColor(250, 250, 250, 150)
 				surface.DrawRect(0, 0, w, h)
-				
+
 				surface.SetDrawColor(0, 0, 0, 120)
 				surface.DrawOutlinedRect(0, 0, w, h)
-				
+
 				if (moderator.selected[self.player]) then
 					surface.SetDrawColor(50, 195, 50, 220 + math.sin(RealTime() * 1.8)*15)
 					surface.DrawRect(2, 2, w - 4, h - 4)
 				end
 			end
 		end
-		
+
 		function PANEL:Think()
 			if (IsValid(self.player)) then
 				local name = self.player:Name()
@@ -246,43 +252,43 @@ local CATEGORY = {}
 		function PANEL:OnCursorEntered()
 			self.entered = true
 		end
-		
+
 		function PANEL:OnCursorExited()
 			self.entered = false
 		end
-		
+
 		function PANEL:Paint(w, h)
 			surface.SetDrawColor(0, 0, 0, 20)
 			surface.DrawRect(0, 0, w, h)
-			
+
 			if (self.entered) then
 				surface.SetDrawColor(255, 255, 255, 75)
 				surface.DrawRect(0, 0, w, h)
 			end
-			
+
 			surface.SetDrawColor(0, 0, 0, 60)
 			surface.DrawOutlinedRect(0, 0, w, h)
-			
+
 			if (self.playerSet) then
 				local teamColor = team.GetColor(self.player:Team())
-					
+
 				surface.SetDrawColor(teamColor)
 				surface.DrawRect(w - 7, 1, 6, h - 2)
 			end
 		end
-		
+
 		function PANEL:SetPlayer(client)
 			self.player = client
 			self.playerSet = true
 			self.avatar:SetPlayer(client)
-			
+
 			self.avatar.click = self.avatar:Add("DButton")
 			self.avatar.click:SetText("")
 			self.avatar.click:Dock(FILL)
 			self.avatar.click.Paint = function() end
 			self.avatar.click.DoClick = function(this)
 				if (!IsValid(client)) then return end
-				
+
 				local menu = DermaMenu()
 					local steamID = client:SteamID()
 					local steamID64 = client:SteamID64() or "76561197960287930"
@@ -309,7 +315,7 @@ local CATEGORY = {}
 				menu:Open()
 			end
 			self.avatar.click:SetToolTip("Click to view this "..(client.SteamName and client:SteamName() or client:Name()).."'s Steam profile.")
-			
+
 			self.name:SetText(client:Name())
 			self.name:SizeToContents()
 

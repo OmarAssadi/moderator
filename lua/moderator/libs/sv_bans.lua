@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 moderator.bans = moderator.bans or {}
 
 util.AddNetworkString("mod_BanList")
@@ -79,7 +85,7 @@ end
 
 function moderator.BanPlayer(client, reason, length, admin)
 	if (!client) then return end
-	
+
 	if (type(length) == "string") then
 		length = moderator.GetTimeByString(length)
 	end
@@ -103,7 +109,7 @@ function moderator.BanPlayer(client, reason, length, admin)
 	else
 		name = client
 	end
-	
+
 	moderator.bans[client] = {
 		name = name,
 		reason = reason,

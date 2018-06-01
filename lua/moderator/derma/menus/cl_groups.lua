@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 local CATEGORY = {}
 	CATEGORY.name = "Groups"
 	CATEGORY.adminOnly = true
@@ -41,7 +47,7 @@ local CATEGORY = {}
 
 						if ((otherGroupTable.immunity or 0) > (groupTable.immunity or 0)) then
 							excluded[k] = true
-							
+
 							return
 						end
 
@@ -68,7 +74,7 @@ local CATEGORY = {}
 
 				local groupTable = moderator.GetGroupTable(moderator.lastGroup)
 				local otherGroupTable = moderator.GetGroupTable(line.group)
-				
+
 				if (selected and line.group != groupTable.inherit) then
 					if ((otherGroupTable.immunity or 0) > (groupTable.immunity or 0)) then
 						return
@@ -180,7 +186,7 @@ local CATEGORY = {}
 
 				if (data == "owner") then return end
 				if (lastImmunity == value) then return end
-				
+
 				moderator.UpdateGroup(data, "immunity", math.Clamp(math.floor(value), 0, 99))
 				lastImmunity = value
 			end

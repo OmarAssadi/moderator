@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 -- These groups just serve as a default group.
 -- Do NOT edit these.
 if (!moderator.groups) then
@@ -281,7 +287,7 @@ function moderator.HasPermission(command, client, group)
 		end
 
 		local allowed = moderator.HasPermission(command, client, groupTable.inherit)
-		
+
 		if (allowed) then
 			return allowed
 		end
@@ -294,7 +300,7 @@ function moderator.HasInfluence(client, target, strict)
 	if (client == target) then
 		return true
 	end
-	
+
 	local group = moderator.GetGroupTable(client)
 	local targetGroup = moderator.GetGroupTable(target)
 

@@ -1,13 +1,19 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 local PANEL = {}
 	local gradient = Material("vgui/gradient-r")
 	local gradient2 = Material("gui/gradient")
-	
+
 	surface.CreateFont("mod_TitleFont", {
 		size = 32,
 		font = "Tahoma",
 		weight = 200
 	})
-	
+
 	surface.CreateFont("mod_TextFont", {
 		size = 16,
 		font = "Tahoma",
@@ -21,7 +27,7 @@ local PANEL = {}
 	})
 
 	local sideWidthFraction = 0.325
-	
+
 	function PANEL:ToggleSideBar()
 		local lastHidden = !self.sideHidden
 		self.sideHidden = !self.sideHidden
@@ -33,21 +39,21 @@ local PANEL = {}
         	if (lastHidden) then
         		fraction = 1 - fraction
     		end
-    		
+
     		fraction = math.Clamp(fraction, 0, 1)
 
     		self.side:SetWide(width * fraction)
     		self.scroll:SetWide(self.scroll.realWidth + (width - self.side:GetWide()))
        	end
-       	
+
        	self.side:SetWide(50)
 	end
-	
+
 	function PANEL:Init()
 		local w, h = math.max(ScrW() * 0.45, 640), math.max(ScrH() * 0.5, 600)
-		
+
 		moderator.menu = self
-		
+
 		self:SetTitle("")
 		self:SetPos(-w, (ScrH() * 0.5) - (h * 0.5))
 		self:SetSize(w, h)
@@ -58,22 +64,22 @@ local PANEL = {}
 		self:SetDeleteOnClose(false)
 		self:SetKeyBoardInputEnabled(false)
 		self.Paint = function() end
-		
+
 		self.side = self:Add("DPanel")
 		self.side:SetWide(w * sideWidthFraction)
 		self.side:Dock(LEFT)
 		self.side.Paint = function(this, w, h)
 			surface.SetDrawColor(moderator.color)
 			surface.DrawRect(0, 0, w, h)
-			
+
 			surface.SetDrawColor(25, 25, 25, 55)
 			surface.DrawOutlinedRect(0, 0, w + 1, h)
-			
+
 			surface.SetDrawColor(25, 25, 25, 25)
 			surface.SetMaterial(gradient)
 			surface.DrawTexturedRect(w - 24, 0, 24, h)
 		end
-		
+
 		self.titleBar = self.side:Add("DPanel")
 		self.titleBar:SetTall(48)
 		self.titleBar:Dock(TOP)
@@ -81,11 +87,11 @@ local PANEL = {}
 			surface.SetDrawColor(255, 255, 255, 4)
 			surface.DrawLine(0, h - 2, w, h - 2)
 			surface.DrawRect(0, 0, w, h)
-			
+
 			surface.SetDrawColor(5, 5, 5, 120)
 			surface.DrawLine(0, h - 1, w, h - 1)
 		end
-		
+
 		self.titleBar.text = self.titleBar:Add("DLabel")
 		self.titleBar.text:SetText("Moderator")
 		self.titleBar.text:Dock(FILL)
@@ -93,17 +99,17 @@ local PANEL = {}
 		self.titleBar.text:SetContentAlignment(5)
 		self.titleBar.text:SetTextColor(Color(255, 255, 255))
 		self.titleBar.text:SetExpensiveShadow(2, Color(5, 5, 5, 150))
-		
+
 		self.body = self:Add("DPanel")
 		self.body:Dock(FILL)
 		self.body.Paint = function(this, w, h)
 			surface.SetDrawColor(236, 240, 241)
 			surface.DrawRect(0, 0, w, h)
-			
+
 			surface.SetDrawColor(25, 25, 25, 150)
 			surface.DrawOutlinedRect(-1, 0, w + 1, h)
 		end
-		
+
 		self.scroll = self.body:Add("DScrollPanel")
 		self.scroll:SetPos(0, 48)
 		self.scroll.realWidth = w - (w * sideWidthFraction) - 1
@@ -144,22 +150,22 @@ local PANEL = {}
 		end
 
 		self.headerTitle = "None"
-		
+
 		local colorDark = Color(25, 25, 25, 180)
-		
+
 		self.header = self.body:Add("DPanel")
 		self.header:SetTall(48)
 		self.header:Dock(TOP)
 		self.header.Paint = function(this, w, h)
 			surface.SetDrawColor(25, 25, 25, 15)
 			surface.DrawRect(0, 0, w, h)
-			
+
 			surface.SetDrawColor(255, 255, 255, 20)
 			surface.DrawLine(0, h - 2, w, h - 2)
-			
+
 			surface.SetDrawColor(5, 5, 5, 60)
 			surface.DrawLine(0, h - 1, w, h - 1)
-			
+
 			draw.SimpleText(self.headerTitle or "", "mod_SubTitleFont", w * 0.5, h * 0.5, colorDark, 1, 1)
 		end
 
@@ -194,7 +200,7 @@ local PANEL = {}
 		self.sideToggle:SetWide(16)
 		self.sideToggle:SetAlpha(230)
 		self.sideToggle:Dock(LEFT)
-		
+
 		self.close = self.header:Add("DImageButton")
 		self.close:SetWide(16)
 		self.close:SetImage("moderator/leave.png")
@@ -222,7 +228,7 @@ local PANEL = {}
 			self.tabs[k]:SetText(v.name)
 			self.tabs[k].DoClick = function(this)
 				if (self.tabID == k) then return end
-				
+
 				self.tabID = k
 				moderator.lastTab = k
 
@@ -297,7 +303,7 @@ local PANEL = {}
 			if (v.adminOnly and !LocalPlayer():CheckGroup(v.group or "moderator")) then
 				continue
 			end
-			
+
 			if (v.ShouldDisplay) then
 				if (v:ShouldDisplay() == false) then
 					continue
