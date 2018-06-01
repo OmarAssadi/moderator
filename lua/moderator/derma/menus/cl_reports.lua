@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 local CATEGORY = {}
 	CATEGORY.name = "Reports"
 	CATEGORY.adminOnly = true
@@ -121,7 +127,7 @@ local PANEL = {}
 				end
 			end)
 		end
-		
+
 		self.name:SizeToContents()
 
 		self.time:MoveRightOf(self.name, 2)

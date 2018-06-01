@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 if (SERVER) then
 	util.AddNetworkString("mod_ReportList")
 	util.AddNetworkString("mod_ReportAdd")
@@ -60,7 +66,7 @@ local COMMAND = {}
 	COMMAND.usage = "<string message>"
 	COMMAND.example = "!report I am stuck - Tells all administrators you are stuck."
 	COMMAND.hidden = true
-	
+
 	function COMMAND:OnRun(client, arguments)
 		local text = table.concat(arguments, " "):sub(1, 250)
 

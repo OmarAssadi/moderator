@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 local CATEGORY = {}
 	CATEGORY.name = "Bans"
 	CATEGORY.adminOnly = true
@@ -84,7 +90,7 @@ local CATEGORY = {}
 							moderator.AdjustBan(line.steamID, "length", text)
 						end)
 					end):SetImage("icon16/clock.png")
-					
+
 					local remove = menu:AddSubMenu("Remove Ban")
 					remove:AddOption("Confirm", function()
 						net.Start("mod_BanRemove")

@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 local COMMAND = {}
 	COMMAND.name = "Kick Player"
 	COMMAND.tip = "Kicks a player from the server."
@@ -17,7 +23,7 @@ local COMMAND = {}
 
 		if (type(target) == "table") then
 			moderator.NotifyAction(client, target, "has kicked * for "..oldReason)
-			
+
 			for k, v in pairs(target) do
 				v:Kick(reason)
 			end

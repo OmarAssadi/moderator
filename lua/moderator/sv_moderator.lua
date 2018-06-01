@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 include("sh_util.lua")
 include("sh_moderator.lua")
 
@@ -55,12 +61,12 @@ hook.Add("PlayerSay", "mod_PlayerSay", function(client, text)
 
 			return ""
 		end
-		
+
 		local command = text:match("([_%w]+)")
 
 		if (command) then
 			command = command:lower()
-			
+
 			local arguments = text:sub(#command + 1)
 			local result, message = moderator.ParseCommand(client, command, arguments)
 

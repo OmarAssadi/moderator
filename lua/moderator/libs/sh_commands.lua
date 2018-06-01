@@ -1,3 +1,9 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 moderator.commands = moderator.commands or {}
 
 if (SERVER) then
@@ -231,7 +237,7 @@ if (SERVER) then
 							else
 								return false, "you are not allowed to target any of these players"
 							end
-						end							
+						end
 					else
 						if (IsValid(target)) then
 							if (!moderator.HasInfluence(client, target, commandTable.strictTargetting)) then
@@ -301,7 +307,7 @@ if (SERVER) then
 		if (#target == 1) then
 			target = target[1]
 		end
-		
+
 		moderator.RunCommand(client, command, arguments, target)
 	end)
 
@@ -309,13 +315,13 @@ if (SERVER) then
 		if (IsValid(client) and arguments[1] == "menu") then
 			return client:ConCommand("mod_menu")
 		end
-		
+
 		local command = arguments[1]
 		table.remove(arguments, 1)
 
 		if (command and command != "help") then
 			command = command:lower()
-			
+
 			local result, message = moderator.ParseCommand(client, command, table.concat(arguments, " "))
 
 			if (message) then
@@ -356,10 +362,10 @@ if (SERVER) then
 			end
 
 			moderator.Print(client, [[
-       __   __   ___  __       ___  __   __  
- |\/| /  \ |  \ |__  |__)  /\   |  /  \ |__) 
- |  | \__/ |__/ |___ |  \ /--\  |  \__/ |  \ 
- Created by Chessnut - Version ]]..moderator.version..[[                         
+       __   __   ___  __       ___  __   __
+ |\/| /  \ |  \ |__  |__)  /\   |  /  \ |__)
+ |  | \__/ |__/ |___ |  \ /--\  |  \__/ |  \
+ Created by Chessnut - Version ]]..moderator.version..[[
 			]])
 			moderator.Print(client, " Command Help:")
 

@@ -1,9 +1,15 @@
+--[[
+    Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
+    (compatibility clause) to any licence for distributing derivative works that have been
+    produced by the normal use of the Work as a library
+--]]
+
 local COMMAND = {}
 	COMMAND.name = "Strip Weapons"
 	COMMAND.tip = "Removes the target's every weapon."
 	COMMAND.icon = "basket_remove"
 	COMMAND.example = "!strip #all - Removes everyone's weapons."
-	
+
 	function COMMAND:OnRun(client, arguments, target)
 		local function Action(target)
 			local weapons = {}
