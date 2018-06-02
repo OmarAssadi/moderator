@@ -12,14 +12,16 @@ if (not moderator.groups) then
         immunity = 99,
         name = "Owner",
         access = true,
-        icon = "key"
+        icon = "key",
+        color = Color(200, 60, 130)
     }
 
     moderator.groups.superadmin = {
         name = "Super Admin",
         inherit = "admin",
         icon = "shield",
-        immunity = 15
+        immunity = 15,
+        color = Color(255, 75, 100)
     }
 
     moderator.groups.admin = {
@@ -38,7 +40,8 @@ if (not moderator.groups) then
             ["spawn"] = true,
             ["strip"] = true
         },
-        immunity = 10
+        immunity = 10,
+        color = Color(220, 55, 55)
     }
 
     moderator.groups.moderator = {
@@ -53,7 +56,8 @@ if (not moderator.groups) then
             ["return"] = true
         },
         inherit = "user",
-        immunity = 5
+        immunity = 5,
+        color = Color(70, 165, 215)
     }
 
     moderator.groups.user = {
@@ -75,7 +79,8 @@ moderator.defaultGroups["user"] = true
 moderator.templateGroup = {
     name = "New Group",
     immunity = 0,
-    icon = "user"
+    icon = "user",
+    color = Color(255, 255, 255)
 }
 
 if (SERVER) then
