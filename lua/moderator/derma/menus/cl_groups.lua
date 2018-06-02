@@ -83,6 +83,14 @@ function CATEGORY:Layout(panel)
     name:SetTall(24)
     name:DockMargin(4, 0, 4, 4)
     panel.name = name
+    panel:AddHeader("Color", content)
+    local colorMixer = content:Add("DColorMixer")
+    colorMixer:Dock(TOP)
+    colorMixer:SetTall(186)
+    colorMixer:DockMargin(4, 0, 4, 4)
+    colorMixer:SetPalette(false)
+    colorMixer:SetAlphaBar(false)
+    panel.colorMixer = colorMixer
     panel:AddHeader("Icon", content)
     local icons = content:Add("DIconBrowser")
     icons:SetTall(256)
@@ -149,6 +157,12 @@ function CATEGORY:Layout(panel)
             choose.Choices[panel.choices[data]] = value
             choose:SetValue(value)
             lastName = value
+        end
+
+        colorMixer:SetColor(groupTable.color or Color(255, 255, 255))
+
+        colorMixer.ValueChanged = function(this)
+            moderator.UpdateGroup(data, "color", colorMixer:GetColor())
         end
 
         icons:SelectIcon("icon16/" .. (groupTable.icon or "user") .. ".png")
