@@ -1,4 +1,4 @@
-﻿--[[
+--[[
     Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
     (compatibility clause) to any licence for distributing derivative works that have been
     produced by the normal use of the Work as a library
@@ -36,7 +36,7 @@ if (CLIENT) then
     end
 end
 
-moderator.version = "1.0.0-beta.2"
+moderator.version = "1.0.0-beta.3"
 moderator.IncludeFolder("libs")
 moderator.IncludeFolder("commands")
 moderator.IncludeFolder("derma")
