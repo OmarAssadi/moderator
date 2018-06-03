@@ -36,7 +36,7 @@ if (CLIENT) then
     end
 end
 
-moderator.version = "1.0.0-beta.3"
+moderator.version = "1.0.0-beta.4"
 moderator.IncludeFolder("libs")
 moderator.IncludeFolder("commands")
 moderator.IncludeFolder("derma")
