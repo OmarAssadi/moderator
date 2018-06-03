@@ -265,7 +265,7 @@ function PANEL:Paint(w, h)
     surface.DrawOutlinedRect(0, 0, w, h)
 
     if (self.playerSet) then
-        local teamColor = team.GetColor(self.player:Team())
+        local teamColor = moderator.GetGroupTable(moderator.GetGroup(self.player)).color
         surface.SetDrawColor(teamColor)
         surface.DrawRect(w - 7, 1, 6, h - 2)
     end
