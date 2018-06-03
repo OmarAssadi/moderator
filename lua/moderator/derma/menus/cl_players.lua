@@ -1,4 +1,4 @@
-﻿--[[
+--[[
     Copyright: Omar Saleh Assadi, Brian Hang 2014-2018; Licensed under the EUPL, with extension of article 5
     (compatibility clause) to any licence for distributing derivative works that have been
     produced by the normal use of the Work as a library
@@ -265,7 +265,7 @@ function PANEL:Paint(w, h)
     surface.DrawOutlinedRect(0, 0, w, h)
 
     if (self.playerSet) then
-        local teamColor = moderator.GetGroupTable(moderator.GetGroup(self.player)).color or team.GetColor(self.player:Team())
+        local teamColor = moderator.GetGroupTable(moderator.GetGroup(self.player)).color
         surface.SetDrawColor(teamColor)
         surface.DrawRect(w - 7, 1, 6, h - 2)
     end
