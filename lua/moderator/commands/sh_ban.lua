@@ -14,11 +14,11 @@ COMMAND.usage = "<time length> [string reason]"
 COMMAND.example = "!ban Troll 1w \"being a troll, banned for a week\" - Bans a troll for one week."
 
 function COMMAND:OnRun(client, arguments, target)
-    if (isstring(arguments[1])) then
+    if isstring(arguments[1]) then
         target = moderator.FindPlayerByName(arguments[1], false, 1)
     end
 
-    if (not target and not arguments[1]:match("STEAM_[0-5]:[0-9]:[0-9]+") and arguments[1]:lower() ~= "bot") then
+    if not target or not target:IsValid() or target:IsBot() then
         return false, "you need to provide a valid player or steamID."
     end
 
