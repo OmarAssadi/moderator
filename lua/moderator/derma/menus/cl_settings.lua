@@ -4,10 +4,10 @@
     produced by the normal use of the Work as a library
 --]]
 local CATEGORY = {}
-CATEGORY.name = "Settings"
+CATEGORY.name = "menuSettings"
 
 function CATEGORY:Layout(panel)
-    panel:AddHeader("Color Options")
+    panel:AddHeader(moderator:L("settingsColor"))
     local selection = panel:Add("DIconLayout")
     selection:SetTall(200)
     selection:DockMargin(4, 8, 4, 16)
@@ -38,9 +38,9 @@ function CATEGORY:Layout(panel)
         end
     end
 
-    panel:AddHeader("Administrative Options")
+    panel:AddHeader(moderator:L("settingAdministrative"))
     local clearOnCommand = panel:Add("DCheckBoxLabel")
-    clearOnCommand:SetText("Clear selection after a command")
+    clearOnCommand:SetText(moderator:L("settingClearSelection"))
     clearOnCommand:SetConVar("mod_clearoncommand")
     clearOnCommand:Dock(TOP)
     clearOnCommand:SetDark(true)

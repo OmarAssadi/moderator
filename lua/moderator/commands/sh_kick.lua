@@ -7,7 +7,7 @@ local COMMAND = {}
 COMMAND.name = "Kick Player"
 COMMAND.tip = "Kicks a player from the server."
 COMMAND.icon = "door_open"
-COMMAND.usage = "[string reason]"
+COMMAND.usage = "<player name> [string reason]"
 COMMAND.example = "!kick Troll trolling - Kicks the player 'Troll' for trolling."
 
 function COMMAND:OnRun(client, arguments, target)

@@ -86,7 +86,7 @@ function PANEL:Init()
     end
 
     self.titleBar.text = self.titleBar:Add("DLabel")
-    self.titleBar.text:SetText("Moderator")
+    self.titleBar.text:SetText(moderator:L("moderatorTitle"))
     self.titleBar.text:Dock(FILL)
     self.titleBar.text:SetFont("mod_TitleFont")
     self.titleBar.text:SetContentAlignment(5)
@@ -155,7 +155,7 @@ function PANEL:Init()
         surface.DrawLine(0, h - 2, w, h - 2)
         surface.SetDrawColor(5, 5, 5, 60)
         surface.DrawLine(0, h - 1, w, h - 1)
-        draw.SimpleText(self.headerTitle or "", "mod_SubTitleFont", w * 0.5, h * 0.5, colorDark, 1, 1)
+        draw.SimpleText(moderator:L(self.headerTitle) or "", "mod_SubTitleFont", w * 0.5, h * 0.5, colorDark, 1, 1)
     end
 
     self.grab = self.header:Add("EditablePanel")
@@ -185,9 +185,17 @@ function PANEL:Init()
             self:SetPos(x, y)
         end
     end
-
-    self.sideToggle = self.header:Add("DImageButton")
-    self.sideToggle:SetImage("moderator/menu.png")
+    
+    local noDraw = function() end
+    if (moderator.nutscript) then
+        self.sideToggle = self.header:Add("DButton")
+        self.sideToggle.Paint = noDraw
+        self.sideToggle:SetFont("nutIconsSmallNew")
+        self.sideToggle:SetText("")
+    else
+        self.sideToggle = self.header:Add("DImageButton")
+        self.sideToggle:SetImage("moderator/menu.png")
+    end
 
     self.sideToggle.DoClick = function(this)
         self:ToggleSideBar()
@@ -197,9 +205,18 @@ function PANEL:Init()
     self.sideToggle:SetWide(16)
     self.sideToggle:SetAlpha(230)
     self.sideToggle:Dock(LEFT)
-    self.close = self.header:Add("DImageButton")
-    self.close:SetWide(16)
-    self.close:SetImage("moderator/leave.png")
+
+    if (moderator.nutscript) then
+        self.close = self.header:Add("DButton")
+        self.close:SetWide(16)
+        self.close.Paint = noDraw
+        self.close:SetFont("nutIconsSmallNew")
+        self.close:SetText("")
+    else
+        self.close = self.header:Add("DImageButton")
+        self.close:SetWide(16)
+        self.close:SetImage("moderator/leave.png")
+    end
 
     self.close.DoClick = function(this)
         self:Close()
@@ -218,7 +235,7 @@ function PANEL:Init()
         end
 
         self.tabs[k] = self.side:Add("mod_MenuTab")
-        self.tabs[k]:SetText(v.name)
+        self.tabs[k]:SetText(moderator:L(v.name))
 
         self.tabs[k].DoClick = function(this)
             if (self.tabID == k) then return end
@@ -300,7 +317,7 @@ function PANEL:RefreshMenu()
         end
 
         self.tabs[k] = self.side:Add("mod_MenuTab")
-        self.tabs[k]:SetText(v.name)
+        self.tabs[k]:SetText(moderator:L(v.name))
 
         self.tabs[k].DoClick = function(this)
             self.tabID = k
