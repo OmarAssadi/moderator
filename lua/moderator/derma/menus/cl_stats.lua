@@ -4,7 +4,7 @@
     produced by the normal use of the Work as a library
 --]]
 local CATEGORY = {}
-CATEGORY.name = "Statistics"
+CATEGORY.name = "menuStatistics"
 CATEGORY.adminOnly = true
 
 -- http://rosettacode.org/wiki/Averages/Median#Lua

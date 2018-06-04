@@ -62,15 +62,20 @@ COMMAND.noArrays = true
 COMMAND.usage = "<string message>"
 COMMAND.example = "!report I am stuck - Tells all administrators you are stuck."
 COMMAND.hidden = true
-
+COMMAND.reportLength = 5
 function COMMAND:OnRun(client, arguments)
     local text = table.concat(arguments, " "):sub(1, 250)
-    if (#text < 5) then return false, "your report must be at least 5 characters long." end
+
+    if (#text < self.reportLength) then
+        local noticeText = moderator:L(client, "reportTooShort", self.reportLength)
+        return false, noticeText
+    end
 
     if ((client.modNextReport or 0) < CurTime()) then
         client.modNextReport = CurTime() + 60
     else
-        return false, "you must wait " .. math.ceil(client.modNextReport - CurTime()) .. " second(s) before making another report."
+        local noticeText = moderator:L(client, "reportWait", math.ceil(client.modNextReport - CurTime()))
+        return false, noticeText
     end
 
     moderator.reports = moderator.reports or {}
@@ -91,14 +96,16 @@ function COMMAND:OnRun(client, arguments)
         net.Send(players)
 
         for k, v in pairs(players) do
-            moderator.Notify(v, client:Name() .. " has reported: " .. text)
+            local noticeText = moderator:L(v, "reportReceived", client:Name(), text)
+            moderator.Notify(v, noticeText)
         end
     end
 
     moderator.reports[index] = report
     moderator.SetData("reports", moderator.reports)
 
-    return false, "your report (#" .. index .. ") has been sent and is awaiting review."
+    local noticeText = moderator:L(client, "reportPending", index)
+    return false, noticeText
 end
 
 moderator.commands.report = COMMAND

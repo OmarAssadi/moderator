@@ -4,7 +4,7 @@
     produced by the normal use of the Work as a library
 --]]
 local CATEGORY = {}
-CATEGORY.name = "Players"
+CATEGORY.name = "menuPlayers"
 CATEGORY.autoSelect = true
 moderator.selected = {}
 moderator.list = moderator.list or {}
@@ -265,7 +265,7 @@ function PANEL:Paint(w, h)
     surface.DrawOutlinedRect(0, 0, w, h)
 
     if (self.playerSet) then
-        local teamColor = moderator.GetGroupTable(moderator.GetGroup(self.player)).color
+        local teamColor = moderator.GetGroupTable(moderator.GetGroup(self.player)).color or color_black
         surface.SetDrawColor(teamColor)
         surface.DrawRect(w - 7, 1, 6, h - 2)
     end

@@ -4,8 +4,10 @@
     produced by the normal use of the Work as a library
 --]]
 include("sh_util.lua")
+include("sh_language.lua")
 include("sh_moderator.lua")
 AddCSLuaFile("sh_util.lua")
+AddCSLuaFile("sh_language.lua")
 AddCSLuaFile("sh_moderator.lua")
 util.AddNetworkString("mod_NotifyAction")
 util.AddNetworkString("mod_Notify")

@@ -4,7 +4,7 @@
     produced by the normal use of the Work as a library
 --]]
 local CATEGORY = {}
-CATEGORY.name = "Reports"
+CATEGORY.name = "menuReports"
 CATEGORY.adminOnly = true
 
 function CATEGORY:Layout(panel)
@@ -16,7 +16,7 @@ function CATEGORY:Layout(panel)
         end
     end
 
-    if (not moderator.reports or table.Count(moderator.reports) == 0) then return panel:ShowMessage("There are currently no reports to view.") end
+    if (not moderator.reports or table.Count(moderator.reports) == 0) then return panel:ShowMessage(moderator:L("reportNoReport")) end
 
     for k, v in SortedPairsByMemberValue(moderator.reports, "date") do
         local panel = panel:Add("mod_ReportPanel")
@@ -98,7 +98,7 @@ function PANEL:SetReport(report, index)
                 menu:Open()
             end
 
-            found = true
+            found = v
             break
         end
     end
@@ -130,9 +130,29 @@ function PANEL:SetReport(report, index)
 
     self.extend.DoClick = function(this)
         local menu = DermaMenu()
-        local desc = menu:AddOption("View Description")
-        desc:SetToolTip(table.concat(moderator.SplitStringByLength(report.text, 80), "\n"))
-        desc:SetImage("icon16/tag_blue.png")
+        --[[
+            local desc = menu:AddOption("View Description")
+            desc:SetToolTip(table.concat(moderator.SplitStringByLength(report.text, 80), "\n"))
+            desc:SetImage("icon16/tag_blue.png")
+        ]]
+
+        menu:AddOption("Go To", function()
+            if (not IsValid(found)) then return end
+            moderator.SendCommand("goto", found)
+        end):SetImage("icon16/arrow_up.png")
+
+        menu:AddOption("Bring", function()
+            if (not IsValid(found)) then return end
+            moderator.SendCommand("tp", found)
+        end):SetImage("icon16/arrow_down.png")
+
+        menu:AddSpacer()
+
+        menu:AddOption("Open Steam Profile", function()
+            gui.OpenURL("http://steamcommunity.com/profiles/" .. steamID64)
+        end):SetImage("icon16/world.png")
+
+        menu:AddSpacer()
 
         menu:AddOption("Remove", function()
             net.Start("mod_ReportDelete")
