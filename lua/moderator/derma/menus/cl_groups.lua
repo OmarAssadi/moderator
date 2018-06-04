@@ -4,11 +4,11 @@
     produced by the normal use of the Work as a library
 --]]
 local CATEGORY = {}
-CATEGORY.name = "Groups"
+CATEGORY.name = "menuGroups"
 CATEGORY.adminOnly = true
 
 function CATEGORY:Layout(panel)
-    panel:AddHeader("Group")
+    panel:AddHeader(moderator:L("groupGroup"))
     local choose = panel:Add("DComboBox")
     choose:Dock(TOP)
     choose:DockMargin(4, 4, 4, 4)
@@ -21,7 +21,7 @@ function CATEGORY:Layout(panel)
     content:SetDrawBackground(true)
     content:DockMargin(4, 4, 4, 4)
     panel.content = content
-    local lastY = panel:AddHeader("Parent", content):GetTall() + 4
+    local lastY = panel:AddHeader(moderator:L("groupParent"), content):GetTall() + 4
     local parent = content:Add("DListView")
     local line = {}
     local excluded = {}
@@ -77,13 +77,13 @@ function CATEGORY:Layout(panel)
     end
 
     panel.parent = parent
-    panel:AddHeader("Name", content)
+    panel:AddHeader(moderator:L("groupName"), content)
     local name = content:Add("DTextEntry")
     name:Dock(TOP)
     name:SetTall(24)
     name:DockMargin(4, 0, 4, 4)
     panel.name = name
-    panel:AddHeader("Color", content)
+    panel:AddHeader(moderator:L("groupColor"), content)
     local colorMixer = content:Add("DColorMixer")
     colorMixer:Dock(TOP)
     colorMixer:SetTall(186)
@@ -91,20 +91,20 @@ function CATEGORY:Layout(panel)
     colorMixer:SetPalette(false)
     colorMixer:SetAlphaBar(false)
     panel.colorMixer = colorMixer
-    panel:AddHeader("Icon", content)
+    panel:AddHeader(moderator:L("groupIcon"), content)
     local icons = content:Add("DIconBrowser")
     icons:SetTall(256)
     icons:DockMargin(4, 0, 4, 4)
     icons:Dock(TOP)
     panel.icons = icons
-    panel:AddHeader("Immunity", content)
+    panel:AddHeader(moderator:L("groupImmunity"), content)
     local immunity = content:Add("DNumberWang")
     immunity:Dock(TOP)
     immunity:DockMargin(4, 0, 4, 4)
     immunity:SetDecimals(0)
     immunity:SetMinMax(0, 99)
     panel.immunity = immunity
-    panel:AddHeader("Permissions", content)
+    panel:AddHeader(moderator:L("groupPermissions"), content)
     local permissions = content:Add("DListView")
     permissions:Dock(TOP)
     permissions:DockMargin(4, 0, 4, 4)
@@ -148,7 +148,7 @@ function CATEGORY:Layout(panel)
         local groupTable = moderator.GetGroupTable(data)
         local lastName = ""
         local lastImmunity = 0
-        name:SetText(groupTable.name)
+        name:SetText(moderator:L(groupTable.name))
 
         name.OnEnter = function(this)
             local value = this:GetText()

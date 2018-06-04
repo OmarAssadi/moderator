@@ -9,7 +9,7 @@ function moderator.ShowQuickMenu()
 
     for k, v in SortedPairsByMemberValue(moderator.commands, "name") do
         if (k ~= "__SortedIndex" and not v.noTarget and not v.hidden) then
-            local command, option = menu:AddSubMenu(v.name)
+            local command, option = menu:AddSubMenu(moderator:L(v.name))
 
             for k2, v2 in ipairs(player.GetAll()) do
                 if (v.OnClick) then

@@ -4,11 +4,12 @@
     produced by the normal use of the Work as a library
 --]]
 include("sh_util.lua")
+include("sh_language.lua")
 include("sh_moderator.lua")
 CreateClientConVar("mod_clearoncommand", "1", true, true)
 
 if (IsValid(moderator.menu)) then
-    moderator.menu:Close()
+    moderator.menu:Remove()
     moderator.menu = nil
     moderator.menu = vgui.Create("mod_Menu")
     MsgN("Reloaded moderator panel.")

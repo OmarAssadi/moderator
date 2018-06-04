@@ -4,7 +4,7 @@
     produced by the normal use of the Work as a library
 --]]
 local CATEGORY = {}
-CATEGORY.name = "Bans"
+CATEGORY.name = "menuBans"
 CATEGORY.adminOnly = true
 
 function CATEGORY:Layout(panel)
@@ -16,7 +16,7 @@ function CATEGORY:Layout(panel)
         end
     end
 
-    if (not moderator.bans or table.Count(moderator.bans) == 0) then return panel:ShowMessage("There are currently no bans to view.") end
+    if (not moderator.bans or table.Count(moderator.bans) == 0) then return panel:ShowMessage(moderator:L("bansNoBan")) end
 
     local function PaintHeader(this, w, h)
         surface.SetDrawColor(255, 255, 255, 5)
